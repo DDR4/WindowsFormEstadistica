@@ -29,7 +29,7 @@ namespace WindowsFormEstadistica
             }
         }
 
-        public static void SoloDecimales(KeyPressEventArgs v)
+        public static void SoloDecimales(TextBox textBox, KeyPressEventArgs v)
         {
             if (char.IsDigit(v.KeyChar))
             {
@@ -43,7 +43,7 @@ namespace WindowsFormEstadistica
             {
                 v.Handled = false;
             }
-            else if (v.KeyChar.ToString().Equals(","))
+            else if (textBox.Text.Length >= 1 && v.KeyChar.ToString().Equals("."))
             {
                 v.Handled = false;
             }
@@ -53,9 +53,9 @@ namespace WindowsFormEstadistica
             }
         }
 
-        public static int NumeroCaracteres(TextBox textBox,int maxnumeros,KeyPressEventArgs v)
+        public static int NumeroCaracteresDecimales(TextBox textBox,int maxnumeros,KeyPressEventArgs v)
         {
-            char serapador = ',';
+            char serapador = '.';
             string[] strarray = textBox.Text.Split(serapador);
 
             int numero = 0;
@@ -63,7 +63,7 @@ namespace WindowsFormEstadistica
             {
                 numero = maxnumeros;
             }
-            else if (v.KeyChar.ToString().Equals(",") || textBox.Text.Length >= maxnumeros)
+            else if (v.KeyChar.ToString().Equals(".") || textBox.Text.Length >= maxnumeros)
             {
                 numero = strarray[0].Length;
             }
@@ -71,14 +71,22 @@ namespace WindowsFormEstadistica
             return numero;
         }
 
-        public static void MaximoCaracteres(TextBox textBox, int enteros, int decimales, KeyPressEventArgs v)
+        public static void MaximoCaracteresDecimales(TextBox textBox, int enteros, int decimales, KeyPressEventArgs v)
         {
             decimales = enteros + 1 + decimales;
-            if (textBox.Text.Length == enteros && !v.KeyChar.ToString().Equals(",") && v.KeyChar != Convert.ToChar(Keys.Back))
+            if (textBox.Text.Length == enteros && !v.KeyChar.ToString().Equals(".") && v.KeyChar != Convert.ToChar(Keys.Back))
             {
                 v.Handled = true;
             }
             else if (textBox.Text.Length == decimales && v.KeyChar != Convert.ToChar(Keys.Back))
+            {
+                v.Handled = true;
+            }
+        }
+
+        public static void MaximoCaracteresEnteros(TextBox textBox, int enteros, KeyPressEventArgs v)
+        {
+            if (textBox.Text.Length == enteros && v.KeyChar != Convert.ToChar(Keys.Back))
             {
                 v.Handled = true;
             }

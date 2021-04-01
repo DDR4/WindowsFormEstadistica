@@ -19,117 +19,151 @@ namespace WindowsFormEstadistica
             InitializeComponent();
         }
 
+        private bool Validar_btnArchivo()
+        {
+            bool validar = false; 
+            if (rbnSinIntervalo.Checked)
+            {
+                validar = true;
+            }
+
+            if (rbnConIntervalo.Checked)
+            {
+                if (string.IsNullOrEmpty(txtInvertavalos.Text))
+                {
+                    MessageBox.Show("Ingresar un numero de intervalos", "Aviso", MessageBoxButtons.OK,MessageBoxIcon.Warning);
+                }
+                else if (string.IsNullOrEmpty(txtIntervaloSuperior.Text))
+                {
+                    MessageBox.Show("Ingresar un intervalo superior", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                else if (string.IsNullOrEmpty(txtIntervaloInferior.Text))
+                {
+                    MessageBox.Show("Ingresar un intervalo inferior", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                else
+                {
+                    validar = true;
+                }
+            }
+            return validar;
+        }
+
+
         private void btnArchivo_Click(object sender, EventArgs e)
         {
-            openFileDialog.InitialDirectory = "D:\\";
-            openFileDialog.Filter = "Archivos de texto (*.txt)|*.txt";
-
-            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            if (Validar_btnArchivo())
             {
-                try
+                openFileDialog.InitialDirectory = "D:\\";
+                openFileDialog.Filter = "Archivos de texto (*.txt)|*.txt";
+
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
-                    char serapador = '\\';
-                    string ruta = openFileDialog.FileName;
-
-                    string[] strarray = ruta.Split(serapador);
-                    int maxstrarray = strarray.Length;
-                    txtRuta.Text = strarray[maxstrarray - 1];
-
-                    dtgvFrecuenciaRelativa.Rows.Clear();
-                    string[] data = File.ReadAllLines(ruta);
-
-                    List<decimal> datadecimal = new List<decimal>();
-
-                    foreach (string item in data)
+                    try
                     {
-                        datadecimal.Add(decimal.Parse(item));
-                    }
+                        char serapador = '\\';
+                        string ruta = openFileDialog.FileName;
 
-                    List<FrecuenciaRelativa_E> xi_fi = new List<FrecuenciaRelativa_E>();
+                        string[] strarray = ruta.Split(serapador);
+                        int maxstrarray = strarray.Length;
+                        txtRuta.Text = strarray[maxstrarray - 1];
 
-                    if (rbnSinIntervalo.Checked)
-                    {
-                        xi_fi = datadecimal.GroupBy(x => x)
-                                .Select(y => new FrecuenciaRelativa_E { xi = y.Key, fi = y.Count() })
-                                .OrderBy(z => z.xi).AsEnumerable().ToList();
-                    }
+                        dtgvFrecuenciaRelativa.Rows.Clear();
+                        string[] data = File.ReadAllLines(ruta);
 
-                    if (rbnConIntervalo.Checked)
-                    {
-                        int numintervalo = Convert.ToInt32(txtInvertavalos.Text);
-                        decimal intervalo = Convert.ToDecimal(txtIntervaloSuperior.Text) - Convert.ToDecimal(txtIntervaloInferior.Text);
+                        List<decimal> datadecimal = new List<decimal>();
 
-
-                        decimal intinf = Convert.ToDecimal(txtIntervaloInferior.Text);
-                        decimal intsup = Convert.ToDecimal(txtIntervaloSuperior.Text);
-                        int fi = 0;
-                        for (int i = 0; i < numintervalo; i++)
+                        foreach (string item in data)
                         {
-                            List<FrecuenciaRelativa_E> aux_xi_fi = new List<FrecuenciaRelativa_E>();
-                            aux_xi_fi = datadecimal.GroupBy(x => x)
-                                    .Select(y => new FrecuenciaRelativa_E { xi = y.Key, fi = y.Count() })
-                                    .Where(z => z.xi >= intinf && z.xi <= intsup).ToList();
+                            datadecimal.Add(decimal.Parse(item));
+                        }
 
-                            fi = aux_xi_fi.Select(x => x).Count();
-                            
-                            FrecuenciaRelativa_E xi = new FrecuenciaRelativa_E
-                            {
-                                strxi = string.Concat(intinf, " - ", intsup),
-                                fi = fi
-                            };
-                            intinf = intsup;
-                            intsup += intervalo;
-                                
-                            xi_fi.Add(xi);
-                        }                      
-                    }
+                        List<FrecuenciaRelativa_E> xi_fi = new List<FrecuenciaRelativa_E>();
 
-                    int xicount = xi_fi.Select(x => x.fi).Sum();
-
-                    var hi = xi_fi.Select(x => new { x.strxi, x.xi, x.fi, hi = Math.Round((decimal)x.fi/xicount,3) }).ToList();
-
-                    List<FrecuenciaRelativa_E> DataFinal = new List<FrecuenciaRelativa_E>();
-
-                    int Fi = 0; decimal Hi = 0;
-                    for (int i = 0; i < hi.Count; i++)
-                    {
-                        FrecuenciaRelativa_E obj = new FrecuenciaRelativa_E();
-                        dtgvFrecuenciaRelativa.Rows.Add();
-                        int y = 0;                       
                         if (rbnSinIntervalo.Checked)
                         {
-                            dtgvFrecuenciaRelativa[y++, i].Value = hi[i].xi;
-                            obj.xi = Convert.ToInt32(hi[i].xi);
+                            xi_fi = datadecimal.GroupBy(x => x)
+                                    .Select(y => new FrecuenciaRelativa_E { xi = y.Key, fi = y.Count() })
+                                    .OrderBy(z => z.xi).AsEnumerable().ToList();
                         }
 
                         if (rbnConIntervalo.Checked)
                         {
-                            dtgvFrecuenciaRelativa[y++, i].Value = hi[i].strxi;
-                            obj.strxi = hi[i].strxi;
+                            int numintervalo = Convert.ToInt32(txtInvertavalos.Text);
+                            decimal intervalo = Convert.ToDecimal(txtIntervaloSuperior.Text.Replace('.', ',')) - Convert.ToDecimal(txtIntervaloInferior.Text.Replace('.', ','));
+
+
+                            decimal intinf = Convert.ToDecimal(txtIntervaloInferior.Text.Replace('.',','));
+                            decimal intsup = Convert.ToDecimal(txtIntervaloSuperior.Text.Replace('.',','));
+                            int fi = 0;
+                            for (int i = 0; i < numintervalo; i++)
+                            {
+                                List<FrecuenciaRelativa_E> aux_xi_fi = new List<FrecuenciaRelativa_E>();
+                                aux_xi_fi = datadecimal.GroupBy(x => x)
+                                        .Select(y => new FrecuenciaRelativa_E { xi = y.Key, fi = y.Count() })
+                                        .Where(z => z.xi >= intinf && z.xi <= intsup).ToList();
+
+                                fi = aux_xi_fi.Select(x => x.fi).Sum();
+
+                                FrecuenciaRelativa_E xi = new FrecuenciaRelativa_E
+                                {
+                                    strxi = string.Concat(intinf, " - ", intsup),
+                                    fi = fi
+                                };
+                                intinf = intsup;
+                                intsup += intervalo;
+
+                                xi_fi.Add(xi);
+                            }
                         }
 
-                        Fi += hi[i].fi;
-                        Hi += hi[i].hi;              
-                        dtgvFrecuenciaRelativa[y++, i].Value = hi[i].fi;
-                        obj.fi = hi[i].fi;
-                        dtgvFrecuenciaRelativa[y++, i].Value = Fi;
-                        obj.Fi = Fi;
-                        dtgvFrecuenciaRelativa[y++, i].Value = hi[i].hi;
-                        obj.hi = hi[i].hi;
-                        dtgvFrecuenciaRelativa[y++, i].Value = Hi;
-                        obj.Hi = Hi;
+                        int xicount = xi_fi.Select(x => x.fi).Sum();
 
-                        DataFinal.Add(obj);
+                        var hi = xi_fi.Select(x => new { x.strxi, x.xi, x.fi, hi = Math.Round((decimal)x.fi / xicount, 3) }).ToList();
+
+                        List<FrecuenciaRelativa_E> DataFinal = new List<FrecuenciaRelativa_E>();
+
+                        int Fi = 0; decimal Hi = 0;
+                        for (int i = 0; i < hi.Count; i++)
+                        {
+                            FrecuenciaRelativa_E obj = new FrecuenciaRelativa_E();
+                            dtgvFrecuenciaRelativa.Rows.Add();
+                            int y = 0;
+                            if (rbnSinIntervalo.Checked)
+                            {
+                                dtgvFrecuenciaRelativa[y++, i].Value = hi[i].xi;
+                                obj.xi = Convert.ToInt32(hi[i].xi);
+                            }
+
+                            if (rbnConIntervalo.Checked)
+                            {
+                                dtgvFrecuenciaRelativa[y++, i].Value = hi[i].strxi;
+                                obj.strxi = hi[i].strxi;
+                            }
+
+                            Fi += hi[i].fi;
+                            Hi += hi[i].hi;
+                            dtgvFrecuenciaRelativa[y++, i].Value = hi[i].fi;
+                            obj.fi = hi[i].fi;
+                            dtgvFrecuenciaRelativa[y++, i].Value = Fi;
+                            obj.Fi = Fi;
+                            dtgvFrecuenciaRelativa[y++, i].Value = hi[i].hi;
+                            obj.hi = hi[i].hi;
+                            dtgvFrecuenciaRelativa[y++, i].Value = Hi;
+                            obj.Hi = Hi;
+
+                            DataFinal.Add(obj);
+                        }
+
+
+                    }
+                    catch (Exception ex)
+                    {
+                        throw ex;
                     }
 
-
                 }
-                catch (Exception ex)
-                {
-                    throw ex;
-                }
-
-            }
+            }           
 
         }
 
@@ -169,21 +203,22 @@ namespace WindowsFormEstadistica
 
         private void txtIntervaloSuperior_KeyPress(object sender, KeyPressEventArgs e)
         {
-            ValidarDatos.SoloDecimales(e);
-            int numero = ValidarDatos.NumeroCaracteres(txtIntervaloSuperior, 2, e);
-            ValidarDatos.MaximoCaracteres(txtIntervaloSuperior, numero, 2, e);
+            ValidarDatos.SoloDecimales(txtIntervaloSuperior, e);
+            int numero = ValidarDatos.NumeroCaracteresDecimales(txtIntervaloSuperior, 2, e);
+            ValidarDatos.MaximoCaracteresDecimales(txtIntervaloSuperior, numero, 2, e);
         }
 
         private void txtIntervaloInferior_KeyPress(object sender, KeyPressEventArgs e)
         {
-            ValidarDatos.SoloDecimales(e);
-            int numero = ValidarDatos.NumeroCaracteres(txtIntervaloInferior,2,e);
-            ValidarDatos.MaximoCaracteres(txtIntervaloInferior, numero, 2, e);
+            ValidarDatos.SoloDecimales(txtIntervaloInferior, e);
+            int numero = ValidarDatos.NumeroCaracteresDecimales(txtIntervaloInferior,2,e);
+            ValidarDatos.MaximoCaracteresDecimales(txtIntervaloInferior, numero, 2, e);
         }
 
         private void txtInvertavalos_KeyPress(object sender, KeyPressEventArgs e)
         {
             ValidarDatos.SoloNumeros(e);
+            ValidarDatos.MaximoCaracteresEnteros(txtInvertavalos, 2, e);
         }
     }
 }
