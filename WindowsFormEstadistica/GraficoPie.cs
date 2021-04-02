@@ -36,11 +36,15 @@ namespace WindowsFormsGraficos
             Grafico.Palette = ChartColorPalette.Pastel;
 
             ChartArea areagrafica = new ChartArea();
+            areagrafica.Area3DStyle.Enable3D = true;
+            areagrafica.Area3DStyle.Inclination = 25;
             Grafico.ChartAreas.Add(areagrafica);
 
             Title titulo = new Title("Grafica de Pie");
             titulo.Font = new Font("Arial", 15, FontStyle.Bold);
             Grafico.Titles.Add(titulo);
+            
+
 
             string nombreserie = "GraficoPie";
             Grafico.Series.Add(nombreserie);
@@ -48,10 +52,11 @@ namespace WindowsFormsGraficos
             Grafico.Series[nombreserie].XValueMember = "Meses";
             Grafico.Series[nombreserie].YValueMembers = "Meses";
             Grafico.Series[nombreserie].IsValueShownAsLabel = true;
+            Grafico.Series[nombreserie].LabelFormat = "#.##%";
 
             foreach (DataRow dr in dt.Rows)
             {
-                Grafico.Series[nombreserie].Points.AddXY(dr.ItemArray[4],dr.ItemArray[1]);
+                Grafico.Series[nombreserie].Points.AddXY(dr.ItemArray[4],dr.ItemArray[2]);
             }            
 
         }

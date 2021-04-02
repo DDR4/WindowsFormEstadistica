@@ -104,6 +104,7 @@ namespace WindowsFormEstadistica
             txtIntervaloSuperior.Enabled = false;
             txtIntervaloInferior.Enabled = false;
             rbnSinIntervalo.Checked = true;
+            rbnNumerico.Checked = true;
         }
 
         private void txtIntervaloSuperior_KeyPress(object sender, KeyPressEventArgs e)
@@ -308,30 +309,35 @@ namespace WindowsFormEstadistica
             {
                 FrecuenciaRelativa_E obj = new FrecuenciaRelativa_E();
 
-                if (rbnSinIntervalo.Checked)
+
+                if (dr.Cells["xi"].Value != null)
                 {
-                    if (rbnTexto.Checked)
+
+                    if (rbnSinIntervalo.Checked)
+                    {
+                        if (rbnTexto.Checked)
+                        {
+                            obj.strxi = Convert.ToString(dr.Cells["xi"].Value);
+                        }
+
+                        if (rbnNumerico.Checked)
+                        {
+                            obj.xi = Convert.ToDecimal(dr.Cells["xi"].Value);
+                        }
+                    }
+
+                    if (rbnConIntervalo.Checked)
                     {
                         obj.strxi = Convert.ToString(dr.Cells["xi"].Value);
                     }
 
-                    if (rbnNumerico.Checked)
-                    {
-                        obj.xi = Convert.ToDecimal(dr.Cells["xi"].Value);
-                    }
+                    obj.fi = Convert.ToInt32(dr.Cells["fi"].Value);
+                    obj.Fi = Convert.ToInt32(dr.Cells["F"].Value);
+                    obj.hi = Convert.ToDecimal(dr.Cells["hi"].Value);
+                    obj.Hi = Convert.ToDecimal(dr.Cells["H"].Value);
+                    DataFinal.Add(obj);
                 }
-
-                if (rbnConIntervalo.Checked)
-                {
-                    obj.strxi = Convert.ToString(dr.Cells["xi"].Value);
-                }
-                obj.fi = Convert.ToInt32(dr.Cells["fi"].Value);
-                obj.Fi = Convert.ToInt32(dr.Cells["Fi"].Value);
-                obj.hi = Convert.ToDecimal(dr.Cells["hi"].Value);
-                obj.Hi = Convert.ToDecimal(dr.Cells["Hi"].Value);
-                DataFinal.Add(obj);
             }
-            DataFinal.Where(x => x.strxi != "");
 
             return DataFinal;
         }

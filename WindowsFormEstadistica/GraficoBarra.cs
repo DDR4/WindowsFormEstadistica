@@ -46,8 +46,8 @@ namespace WindowsFormsGraficos
             foreach (DataRow dr in dt.Rows)
             {
                 Series serie = Grafico.Series.Add(dr.ItemArray[4].ToString());
-                serie.Label = dr.ItemArray[1].ToString();
-                serie.Points.Add(Convert.ToDouble(dr.ItemArray[1]));
+                serie.Label = dr.ItemArray[0].ToString();
+                serie.Points.Add(Convert.ToDouble(dr.ItemArray[0]));
             }                      
 
         }
