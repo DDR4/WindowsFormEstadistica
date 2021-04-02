@@ -218,8 +218,9 @@ namespace WindowsFormEstadistica
                         strxi = string.Concat(intinf, " - ", intsup),
                         fi = fi
                     };
-                    intinf = intsup + 1;
-                    intsup += intervalo + 1;
+                    var auxintervalo = intervalo < 1 ? intervalo : 1;
+                    intinf = intsup + auxintervalo;
+                    intsup += intervalo + auxintervalo;
 
                     xi_fi.Add(xi);
                 }
