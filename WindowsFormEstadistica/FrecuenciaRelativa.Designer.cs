@@ -258,6 +258,7 @@
             this.rbnNumerico.TabStop = true;
             this.rbnNumerico.Text = "Numerico";
             this.rbnNumerico.UseVisualStyleBackColor = true;
+            this.rbnNumerico.CheckedChanged += new System.EventHandler(this.rbnNumerico_CheckedChanged);
             // 
             // rbnTexto
             // 
@@ -270,6 +271,7 @@
             this.rbnTexto.TabStop = true;
             this.rbnTexto.Text = "Texto";
             this.rbnTexto.UseVisualStyleBackColor = true;
+            this.rbnTexto.CheckedChanged += new System.EventHandler(this.rbnTexto_CheckedChanged);
             // 
             // gbIntervalo
             // 

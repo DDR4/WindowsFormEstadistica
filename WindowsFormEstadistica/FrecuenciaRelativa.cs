@@ -61,7 +61,20 @@ namespace WindowsFormEstadistica
 
                     if (data != null)
                     {
-                        CargaDatos(data);
+                        int validartd = ValidarTipoDato(data);
+                        if (validartd == 0)
+                        {
+                            CargaDatos(data);
+                        }
+                        else if (validartd == 1)
+                        {
+                            MessageBox.Show("Se encontraron datos numericos", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                        else if (validartd == 2)
+                        {
+                            MessageBox.Show("Se encontraron datos no numericos", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+
                     }                                                  
                 }
                 catch (Exception ex)
@@ -273,7 +286,19 @@ namespace WindowsFormEstadistica
 
             if (data != null)
             {
-                CargaDatos(data);
+                int validartd = ValidarTipoDato(data);
+                if (validartd == 0)
+                {
+                    CargaDatos(data);
+                }
+                else if (validartd == 1)
+                {
+                    MessageBox.Show("Se encontraron datos numericos", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                else if (validartd == 2)
+                {
+                    MessageBox.Show("Se encontraron datos no numericos", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
             }
         }
 
@@ -341,6 +366,58 @@ namespace WindowsFormEstadistica
             }
 
             return DataFinal;
+        }
+
+        private void rbnTexto_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rbnTexto.Checked)
+            {
+                rbnConIntervalo.Enabled = false;
+            }         
+        }
+
+        private void rbnNumerico_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rbnNumerico.Checked)
+            {
+                rbnConIntervalo.Enabled = true;
+                rbnSinIntervalo.Enabled = true;
+            }
+        }
+
+        public int ValidarTipoDato(string[] data) {
+            int validar = 0;
+
+            if (rbnTexto.Checked)
+            {
+                foreach (var item in data)
+                {
+                    bool isNumeric = int.TryParse(item, out int n);
+
+                    if (isNumeric)
+                    {
+                        validar = 1;
+                        break;
+                    }
+                }
+            }
+
+            if (rbnNumerico.Checked)
+            {
+                foreach (var item in data)
+                {
+                    bool isNumeric = int.TryParse(item, out int n);
+
+                    if (!isNumeric)
+                    {
+                        validar = 2;
+                        break;
+                    }
+                }
+            }
+
+
+            return validar;
         }
     }
 }

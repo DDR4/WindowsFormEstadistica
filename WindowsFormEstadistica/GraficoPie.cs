@@ -56,7 +56,8 @@ namespace WindowsFormsGraficos
 
             foreach (DataRow dr in dt.Rows)
             {
-                Grafico.Series[nombreserie].Points.AddXY(dr.ItemArray[4],dr.ItemArray[2]);
+                string strserie = string.IsNullOrEmpty(dr.ItemArray[4].ToString()) ? dr.ItemArray[5].ToString() : dr.ItemArray[4].ToString();
+                Grafico.Series[nombreserie].Points.AddXY(strserie, dr.ItemArray[2]);
             }            
 
         }
