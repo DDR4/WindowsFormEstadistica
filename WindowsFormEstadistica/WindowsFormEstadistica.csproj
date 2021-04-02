@@ -32,8 +32,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="FastMember, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\FastMember.1.2.0\lib\net45\FastMember.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -51,11 +55,29 @@
     <Compile Include="FrecuenciaRelativa.Designer.cs">
       <DependentUpon>FrecuenciaRelativa.cs</DependentUpon>
     </Compile>
+    <Compile Include="GraficoBarra.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GraficoBarra.Designer.cs">
+      <DependentUpon>GraficoBarra.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GraficoPie.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GraficoPie.Designer.cs">
+      <DependentUpon>GraficoPie.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ValidarDatos.cs" />
     <EmbeddedResource Include="FrecuenciaRelativa.resx">
       <DependentUpon>FrecuenciaRelativa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GraficoBarra.resx">
+      <DependentUpon>GraficoBarra.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GraficoPie.resx">
+      <DependentUpon>GraficoPie.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -66,6 +88,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
