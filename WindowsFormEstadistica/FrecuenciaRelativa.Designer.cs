@@ -52,10 +52,8 @@
             this.xi = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fi = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.F = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.hi = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.H = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ni = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.N = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dtgvFrecuenciaRelativa)).BeginInit();
             this.gbIntervalo.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -100,10 +98,8 @@
             this.xi,
             this.fi,
             this.F,
-            this.hi,
-            this.H,
-            this.Column1,
-            this.Column2});
+            this.ni,
+            this.N});
             this.dtgvFrecuenciaRelativa.Location = new System.Drawing.Point(62, 181);
             this.dtgvFrecuenciaRelativa.Name = "dtgvFrecuenciaRelativa";
             this.dtgvFrecuenciaRelativa.Size = new System.Drawing.Size(536, 261);
@@ -303,25 +299,15 @@
             this.F.HeaderText = "F";
             this.F.Name = "F";
             // 
-            // hi
+            // ni
             // 
-            this.hi.HeaderText = "ni";
-            this.hi.Name = "hi";
+            this.ni.HeaderText = "ni";
+            this.ni.Name = "ni";
             // 
-            // H
+            // N
             // 
-            this.H.HeaderText = "N";
-            this.H.Name = "H";
-            // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "Column1";
-            this.Column1.Name = "Column1";
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "Column2";
-            this.Column2.Name = "Column2";
+            this.N.HeaderText = "N";
+            this.N.Name = "N";
             // 
             // FrecuenciaRelativa
             // 
@@ -377,10 +363,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn xi;
         private System.Windows.Forms.DataGridViewTextBoxColumn fi;
         private System.Windows.Forms.DataGridViewTextBoxColumn F;
-        private System.Windows.Forms.DataGridViewTextBoxColumn hi;
-        private System.Windows.Forms.DataGridViewTextBoxColumn H;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ni;
+        private System.Windows.Forms.DataGridViewTextBoxColumn N;
     }
 }
 
