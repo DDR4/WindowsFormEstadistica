@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Entity
 {
-    public class FrecuenciaRelativa_E
+    public class TablaFrecuencia_E
     {
         public string strxi { get; set; }
         public decimal xi { get; set; }

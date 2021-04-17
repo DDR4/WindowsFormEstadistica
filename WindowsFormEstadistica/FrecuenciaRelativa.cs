@@ -188,7 +188,7 @@ namespace WindowsFormEstadistica
                 }
             }
 
-            List<FrecuenciaRelativa_E> xi_fi = new List<FrecuenciaRelativa_E>();
+            List<TablaFrecuencia_E> xi_fi = new List<TablaFrecuencia_E>();
 
             if (rbnSinIntervalo.Checked)
             {             
@@ -196,14 +196,14 @@ namespace WindowsFormEstadistica
                 if (rbnTexto.Checked)
                 {
                     xi_fi = datatexto.GroupBy(x => x)
-                        .Select(y => new FrecuenciaRelativa_E { strxi = y.Key, fi = y.Count() })
+                        .Select(y => new TablaFrecuencia_E { strxi = y.Key, fi = y.Count() })
                         .OrderBy(z => z.strxi).AsEnumerable().ToList();
                 }
 
                 if (rbnNumerico.Checked)
                 {
                     xi_fi = datadecimal.GroupBy(x => x)
-                         .Select(y => new FrecuenciaRelativa_E { xi = y.Key, fi = y.Count() })
+                         .Select(y => new TablaFrecuencia_E { xi = y.Key, fi = y.Count() })
                          .OrderBy(z => z.xi).AsEnumerable().ToList();
                 }
             }
@@ -219,14 +219,14 @@ namespace WindowsFormEstadistica
                 int fi = 0;
                 for (int i = 0; i < numintervalo; i++)
                 {
-                    List<FrecuenciaRelativa_E> aux_xi_fi = new List<FrecuenciaRelativa_E>();
+                    List<TablaFrecuencia_E> aux_xi_fi = new List<TablaFrecuencia_E>();
                     aux_xi_fi = datadecimal.GroupBy(x => x)
-                            .Select(y => new FrecuenciaRelativa_E { xi = y.Key, fi = y.Count() })
+                            .Select(y => new TablaFrecuencia_E { xi = y.Key, fi = y.Count() })
                             .Where(z => z.xi >= intinf && z.xi <= intsup).ToList();
 
                     fi = aux_xi_fi.Select(x => x.fi).Sum();
 
-                    FrecuenciaRelativa_E xi = new FrecuenciaRelativa_E
+                    TablaFrecuencia_E xi = new TablaFrecuencia_E
                     {
                         strxi = string.Concat(intinf, " - ", intsup),
                         fi = fi
@@ -311,7 +311,7 @@ namespace WindowsFormEstadistica
 
         private void btnGraficaBarra_Click(object sender, EventArgs e)
         {
-            List<FrecuenciaRelativa_E> DataFinal = new List<FrecuenciaRelativa_E>();
+            List<TablaFrecuencia_E> DataFinal = new List<TablaFrecuencia_E>();
             DataFinal = RecuperarDatos();
 
             Form frombarra = new GraficoBarra(DataFinal);
@@ -320,20 +320,20 @@ namespace WindowsFormEstadistica
 
         private void btnGraficaPie_Click(object sender, EventArgs e)
         {
-            List<FrecuenciaRelativa_E> DataFinal = new List<FrecuenciaRelativa_E>();
+            List<TablaFrecuencia_E> DataFinal = new List<TablaFrecuencia_E>();
             DataFinal = RecuperarDatos();
 
             Form frompie = new GraficoPie(DataFinal);
             frompie.Show();
         }
 
-        public List<FrecuenciaRelativa_E> RecuperarDatos()
+        public List<TablaFrecuencia_E> RecuperarDatos()
         {
-            List<FrecuenciaRelativa_E> DataFinal = new List<FrecuenciaRelativa_E>();
+            List<TablaFrecuencia_E> DataFinal = new List<TablaFrecuencia_E>();
 
             foreach (DataGridViewRow dr in dtgvFrecuenciaRelativa.Rows)
             {
-                FrecuenciaRelativa_E obj = new FrecuenciaRelativa_E();
+                TablaFrecuencia_E obj = new TablaFrecuencia_E();
 
 
                 if (dr.Cells["xi"].Value != null)

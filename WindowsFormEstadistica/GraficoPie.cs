@@ -15,8 +15,8 @@ namespace WindowsFormsGraficos
 {
     public partial class GraficoPie : Form
     {
-        private readonly List<FrecuenciaRelativa_E> DataFinal;
-        public GraficoPie(List<FrecuenciaRelativa_E> Data)
+        private readonly List<TablaFrecuencia_E> DataFinal;
+        public GraficoPie(List<TablaFrecuencia_E> Data)
         {
             DataFinal = Data;
             InitializeComponent();

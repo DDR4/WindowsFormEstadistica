@@ -15,9 +15,9 @@ namespace WindowsFormsGraficos
 {
     public partial class GraficoBarra : Form
     {
-        private readonly List<FrecuenciaRelativa_E> DataFinal;
+        private readonly List<TablaFrecuencia_E> DataFinal;
 
-        public GraficoBarra(List<FrecuenciaRelativa_E> Data)
+        public GraficoBarra(List<TablaFrecuencia_E> Data)
         {
             DataFinal = Data;
             InitializeComponent();
