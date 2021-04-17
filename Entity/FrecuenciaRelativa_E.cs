@@ -12,7 +12,7 @@ namespace Entity
         public decimal xi { get; set; }
         public int fi { get; set; }
         public int Fi { get; set; }
-        public decimal hi { get; set; }
-        public decimal Hi { get; set; }
+        public decimal ni { get; set; }
+        public decimal Ni { get; set; }
     }
 }

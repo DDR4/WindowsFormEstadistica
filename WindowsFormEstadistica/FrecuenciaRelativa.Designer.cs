@@ -33,13 +33,6 @@
             this.btnArchivo = new System.Windows.Forms.Button();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.dtgvFrecuenciaRelativa = new System.Windows.Forms.DataGridView();
-            this.xi = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fi = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.F = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.hi = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.H = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.rbnSinIntervalo = new System.Windows.Forms.RadioButton();
             this.rbnConIntervalo = new System.Windows.Forms.RadioButton();
             this.txtIntervaloSuperior = new System.Windows.Forms.TextBox();
@@ -56,6 +49,13 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnGraficaBarra = new System.Windows.Forms.Button();
             this.btnGraficaPie = new System.Windows.Forms.Button();
+            this.xi = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fi = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.F = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.hi = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.H = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dtgvFrecuenciaRelativa)).BeginInit();
             this.gbIntervalo.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -108,41 +108,6 @@
             this.dtgvFrecuenciaRelativa.Name = "dtgvFrecuenciaRelativa";
             this.dtgvFrecuenciaRelativa.Size = new System.Drawing.Size(536, 261);
             this.dtgvFrecuenciaRelativa.TabIndex = 3;
-            // 
-            // xi
-            // 
-            this.xi.HeaderText = "xi";
-            this.xi.Name = "xi";
-            // 
-            // fi
-            // 
-            this.fi.HeaderText = "fi";
-            this.fi.Name = "fi";
-            // 
-            // F
-            // 
-            this.F.HeaderText = "F";
-            this.F.Name = "F";
-            // 
-            // hi
-            // 
-            this.hi.HeaderText = "hi";
-            this.hi.Name = "hi";
-            // 
-            // H
-            // 
-            this.H.HeaderText = "H";
-            this.H.Name = "H";
-            // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "Column1";
-            this.Column1.Name = "Column1";
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "Column2";
-            this.Column2.Name = "Column2";
             // 
             // rbnSinIntervalo
             // 
@@ -323,6 +288,41 @@
             this.btnGraficaPie.UseVisualStyleBackColor = true;
             this.btnGraficaPie.Click += new System.EventHandler(this.btnGraficaPie_Click);
             // 
+            // xi
+            // 
+            this.xi.HeaderText = "xi";
+            this.xi.Name = "xi";
+            // 
+            // fi
+            // 
+            this.fi.HeaderText = "fi";
+            this.fi.Name = "fi";
+            // 
+            // F
+            // 
+            this.F.HeaderText = "F";
+            this.F.Name = "F";
+            // 
+            // hi
+            // 
+            this.hi.HeaderText = "ni";
+            this.hi.Name = "hi";
+            // 
+            // H
+            // 
+            this.H.HeaderText = "N";
+            this.H.Name = "H";
+            // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "Column1";
+            this.Column1.Name = "Column1";
+            // 
+            // Column2
+            // 
+            this.Column2.HeaderText = "Column2";
+            this.Column2.Name = "Column2";
+            // 
             // FrecuenciaRelativa
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -358,11 +358,6 @@
         private System.Windows.Forms.Button btnArchivo;
         private System.Windows.Forms.OpenFileDialog openFileDialog;
         private System.Windows.Forms.DataGridView dtgvFrecuenciaRelativa;
-        private System.Windows.Forms.DataGridViewTextBoxColumn xi;
-        private System.Windows.Forms.DataGridViewTextBoxColumn fi;
-        private System.Windows.Forms.DataGridViewTextBoxColumn F;
-        private System.Windows.Forms.DataGridViewTextBoxColumn hi;
-        private System.Windows.Forms.DataGridViewTextBoxColumn H;
         private System.Windows.Forms.RadioButton rbnSinIntervalo;
         private System.Windows.Forms.RadioButton rbnConIntervalo;
         private System.Windows.Forms.TextBox txtIntervaloSuperior;
@@ -371,8 +366,6 @@
         private System.Windows.Forms.Label lblInferior;
         private System.Windows.Forms.Label lblIntervalos;
         private System.Windows.Forms.TextBox txtInvertavalos;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.Button btnRefrescar;
         private System.Windows.Forms.Button btnLimpiar;
         private System.Windows.Forms.RadioButton rbnNumerico;
@@ -381,6 +374,13 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button btnGraficaBarra;
         private System.Windows.Forms.Button btnGraficaPie;
+        private System.Windows.Forms.DataGridViewTextBoxColumn xi;
+        private System.Windows.Forms.DataGridViewTextBoxColumn fi;
+        private System.Windows.Forms.DataGridViewTextBoxColumn F;
+        private System.Windows.Forms.DataGridViewTextBoxColumn hi;
+        private System.Windows.Forms.DataGridViewTextBoxColumn H;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
     }
 }
 

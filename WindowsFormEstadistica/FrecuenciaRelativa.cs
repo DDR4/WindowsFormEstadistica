@@ -359,8 +359,8 @@ namespace WindowsFormEstadistica
 
                     obj.fi = Convert.ToInt32(dr.Cells["fi"].Value);
                     obj.Fi = Convert.ToInt32(dr.Cells["F"].Value);
-                    obj.hi = Convert.ToDecimal(dr.Cells["hi"].Value);
-                    obj.Hi = Convert.ToDecimal(dr.Cells["H"].Value);
+                    obj.ni = Convert.ToDecimal(dr.Cells["ni"].Value);
+                    obj.Ni = Convert.ToDecimal(dr.Cells["N"].Value);
                     DataFinal.Add(obj);
                 }
             }
