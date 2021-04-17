@@ -61,6 +61,12 @@
     <Compile Include="GraficoBarra.Designer.cs">
       <DependentUpon>GraficoBarra.cs</DependentUpon>
     </Compile>
+    <Compile Include="TendenciaCentral.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TendenciaCentral.Designer.cs">
+      <DependentUpon>TendenciaCentral.cs</DependentUpon>
+    </Compile>
     <Compile Include="GraficoPie.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -75,6 +81,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GraficoBarra.resx">
       <DependentUpon>GraficoBarra.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TendenciaCentral.resx">
+      <DependentUpon>TendenciaCentral.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GraficoPie.resx">
       <DependentUpon>GraficoPie.cs</DependentUpon>

@@ -33,6 +33,11 @@
             this.btnArchivo = new System.Windows.Forms.Button();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.dtgvFrecuenciaRelativa = new System.Windows.Forms.DataGridView();
+            this.xi = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fi = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.F = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ni = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.N = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.rbnSinIntervalo = new System.Windows.Forms.RadioButton();
             this.rbnConIntervalo = new System.Windows.Forms.RadioButton();
             this.txtIntervaloSuperior = new System.Windows.Forms.TextBox();
@@ -49,11 +54,7 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnGraficaBarra = new System.Windows.Forms.Button();
             this.btnGraficaPie = new System.Windows.Forms.Button();
-            this.xi = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fi = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.F = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ni = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.N = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnTendeciaCentral = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dtgvFrecuenciaRelativa)).BeginInit();
             this.gbIntervalo.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -104,6 +105,31 @@
             this.dtgvFrecuenciaRelativa.Name = "dtgvFrecuenciaRelativa";
             this.dtgvFrecuenciaRelativa.Size = new System.Drawing.Size(536, 261);
             this.dtgvFrecuenciaRelativa.TabIndex = 3;
+            // 
+            // xi
+            // 
+            this.xi.HeaderText = "xi";
+            this.xi.Name = "xi";
+            // 
+            // fi
+            // 
+            this.fi.HeaderText = "fi";
+            this.fi.Name = "fi";
+            // 
+            // F
+            // 
+            this.F.HeaderText = "F";
+            this.F.Name = "F";
+            // 
+            // ni
+            // 
+            this.ni.HeaderText = "ni";
+            this.ni.Name = "ni";
+            // 
+            // N
+            // 
+            this.N.HeaderText = "N";
+            this.N.Name = "N";
             // 
             // rbnSinIntervalo
             // 
@@ -266,7 +292,7 @@
             // 
             // btnGraficaBarra
             // 
-            this.btnGraficaBarra.Location = new System.Drawing.Point(224, 457);
+            this.btnGraficaBarra.Location = new System.Drawing.Point(273, 457);
             this.btnGraficaBarra.Name = "btnGraficaBarra";
             this.btnGraficaBarra.Size = new System.Drawing.Size(84, 23);
             this.btnGraficaBarra.TabIndex = 20;
@@ -276,7 +302,7 @@
             // 
             // btnGraficaPie
             // 
-            this.btnGraficaPie.Location = new System.Drawing.Point(346, 457);
+            this.btnGraficaPie.Location = new System.Drawing.Point(406, 457);
             this.btnGraficaPie.Name = "btnGraficaPie";
             this.btnGraficaPie.Size = new System.Drawing.Size(89, 23);
             this.btnGraficaPie.TabIndex = 21;
@@ -284,36 +310,22 @@
             this.btnGraficaPie.UseVisualStyleBackColor = true;
             this.btnGraficaPie.Click += new System.EventHandler(this.btnGraficaPie_Click);
             // 
-            // xi
+            // btnTendeciaCentral
             // 
-            this.xi.HeaderText = "xi";
-            this.xi.Name = "xi";
-            // 
-            // fi
-            // 
-            this.fi.HeaderText = "fi";
-            this.fi.Name = "fi";
-            // 
-            // F
-            // 
-            this.F.HeaderText = "F";
-            this.F.Name = "F";
-            // 
-            // ni
-            // 
-            this.ni.HeaderText = "ni";
-            this.ni.Name = "ni";
-            // 
-            // N
-            // 
-            this.N.HeaderText = "N";
-            this.N.Name = "N";
+            this.btnTendeciaCentral.Location = new System.Drawing.Point(114, 457);
+            this.btnTendeciaCentral.Name = "btnTendeciaCentral";
+            this.btnTendeciaCentral.Size = new System.Drawing.Size(105, 23);
+            this.btnTendeciaCentral.TabIndex = 22;
+            this.btnTendeciaCentral.Text = "Tendencia Central";
+            this.btnTendeciaCentral.UseVisualStyleBackColor = true;
+            this.btnTendeciaCentral.Click += new System.EventHandler(this.btnTendeciaCentral_Click);
             // 
             // FrecuenciaRelativa
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(653, 492);
+            this.Controls.Add(this.btnTendeciaCentral);
             this.Controls.Add(this.btnGraficaPie);
             this.Controls.Add(this.btnGraficaBarra);
             this.Controls.Add(this.groupBox1);
@@ -365,6 +377,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn F;
         private System.Windows.Forms.DataGridViewTextBoxColumn ni;
         private System.Windows.Forms.DataGridViewTextBoxColumn N;
+        private System.Windows.Forms.Button btnTendeciaCentral;
     }
 }
 

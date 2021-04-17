@@ -57,20 +57,22 @@ namespace WindowsFormEstadistica
             {             
                 try
                 {
-                    string[] data = CargaDocumento();
+                    CargarDocumentos_E objcd = new CargarDocumentos_E();
+                    TipoDato_E objtd = new TipoDato_E();
+                    objcd.data = CargaDocumento();
 
-                    if (data != null)
+                    if (objcd.data != null)
                     {
-                        int validartd = ValidarTipoDato(data);
-                        if (validartd == 0)
+                        objtd.tipodato = ValidarTipoDato(objcd.data);
+                        if (objtd.tipodato == 0)
                         {
-                            CargaDatos(data);
+                            CargaDatos(objcd.data);
                         }
-                        else if (validartd == 1)
+                        else if (objtd.tipodato == 1)
                         {
                             MessageBox.Show("Se encontraron datos numericos", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         }
-                        else if (validartd == 2)
+                        else if (objtd.tipodato == 2)
                         {
                             MessageBox.Show("Se encontraron datos no numericos", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         }
@@ -145,21 +147,22 @@ namespace WindowsFormEstadistica
             openFileDialog.InitialDirectory = "D:\\";
             openFileDialog.Filter = "Archivos de texto (*.txt)|*.txt";
 
-            string[] data = null;
+            CargarDocumentos_E objcd = new CargarDocumentos_E();
+
+            objcd.data = null;
 
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 try
                 {
                     char serapador = '\\';
-                    string ruta = openFileDialog.FileName;
-
-                    string[] strarray = ruta.Split(serapador);
-                    int maxstrarray = strarray.Length;
-                    txtRuta.Text = strarray[maxstrarray - 1];
+                    objcd.ruta = openFileDialog.FileName;
+                    objcd.strarray = objcd.ruta.Split(serapador);
+                    objcd.maxstrarray = objcd.strarray.Length;
+                    txtRuta.Text = objcd.strarray[objcd.maxstrarray - 1];
 
                     dtgvFrecuenciaRelativa.Rows.Clear();
-                    data = File.ReadAllLines(ruta);
+                    objcd.data = File.ReadAllLines(objcd.ruta);
                 }
                 catch (Exception ex)
                 {
@@ -167,24 +170,23 @@ namespace WindowsFormEstadistica
                 }
 
             }
-            return data;
+            return objcd.data;
         }
 
         public void CargaDatos(string[] data)
         {
-            List<decimal> datadecimal = new List<decimal>();
-            List<string> datatexto = new List<string>();
+            TipoDato_E objtd = new TipoDato_E();   
             
             foreach (string item in data)
             {
                 if (rbnTexto.Checked)
                 {
-                    datatexto.Add(item);
+                    objtd.datatexto.Add(item);
                 }
 
                 if (rbnNumerico.Checked)
                 {
-                    datadecimal.Add(decimal.Parse(item.Replace('.', ',')));
+                    objtd.datadecimal.Add(decimal.Parse(item.Replace('.', ',')));
                 }
             }
 
@@ -195,14 +197,14 @@ namespace WindowsFormEstadistica
 
                 if (rbnTexto.Checked)
                 {
-                    xi_fi = datatexto.GroupBy(x => x)
+                    xi_fi = objtd.datatexto.GroupBy(x => x)
                         .Select(y => new TablaFrecuencia_E { strxi = y.Key, fi = y.Count() })
                         .OrderBy(z => z.strxi).AsEnumerable().ToList();
                 }
 
                 if (rbnNumerico.Checked)
                 {
-                    xi_fi = datadecimal.GroupBy(x => x)
+                    xi_fi = objtd.datadecimal.GroupBy(x => x)
                          .Select(y => new TablaFrecuencia_E { xi = y.Key, fi = y.Count() })
                          .OrderBy(z => z.xi).AsEnumerable().ToList();
                 }
@@ -210,30 +212,30 @@ namespace WindowsFormEstadistica
 
             if (rbnConIntervalo.Checked)
             {
-                int numintervalo = Convert.ToInt32(txtInvertavalos.Text);
-                decimal intervalo = Convert.ToDecimal(txtIntervaloSuperior.Text.Replace('.', ',')) - Convert.ToDecimal(txtIntervaloInferior.Text.Replace('.', ','));
-
-
-                decimal intinf = Convert.ToDecimal(txtIntervaloInferior.Text.Replace('.', ','));
-                decimal intsup = Convert.ToDecimal(txtIntervaloSuperior.Text.Replace('.', ','));
-                int fi = 0;
-                for (int i = 0; i < numintervalo; i++)
+                Intervalo_E objint = new Intervalo_E();
+                objint.numintervalo = Convert.ToInt32(txtInvertavalos.Text);
+                objint.intervalo = Convert.ToDecimal(txtIntervaloSuperior.Text.Replace('.', ',')) - Convert.ToDecimal(txtIntervaloInferior.Text.Replace('.', ','));
+                objint.intinf = Convert.ToDecimal(txtIntervaloInferior.Text.Replace('.', ','));
+                objint.intsup = Convert.ToDecimal(txtIntervaloSuperior.Text.Replace('.', ','));
+                objint.fi = 0;
+                for (int i = 0; i < objint.numintervalo; i++)
                 {
                     List<TablaFrecuencia_E> aux_xi_fi = new List<TablaFrecuencia_E>();
-                    aux_xi_fi = datadecimal.GroupBy(x => x)
+                    aux_xi_fi = objtd.datadecimal.GroupBy(x => x)
                             .Select(y => new TablaFrecuencia_E { xi = y.Key, fi = y.Count() })
-                            .Where(z => z.xi >= intinf && z.xi <= intsup).ToList();
+                            .Where(z => z.xi >= objint.intinf && z.xi <= objint.intsup).ToList();
 
-                    fi = aux_xi_fi.Select(x => x.fi).Sum();
+                    objint.fi = aux_xi_fi.Select(x => x.fi).Sum();
 
                     TablaFrecuencia_E xi = new TablaFrecuencia_E
                     {
-                        strxi = string.Concat(intinf, " - ", intsup),
-                        fi = fi
+                        strxi = string.Concat(objint.intinf, " - ", objint.intsup),
+                        xi = objint.intervalo >= 1 ? ((objint.intsup * objint.intsup + 1)/2)/objint.intsup : 0,
+                        fi = objint.fi
                     };
-                    var auxintervalo = intervalo < 1 ? intervalo : 1;
-                    intinf = intsup + auxintervalo;
-                    intsup += intervalo + auxintervalo;
+                    var auxintervalo = objint.intervalo < 1 ? objint.intervalo : 1;
+                    objint.intinf = objint.intsup + auxintervalo;
+                    objint.intsup += objint.intervalo + auxintervalo;
 
                     xi_fi.Add(xi);
                 }
@@ -279,23 +281,25 @@ namespace WindowsFormEstadistica
         }
         private void btnRefrescar_Click(object sender, EventArgs e)
         {
-            string[] data = null;
-            string ruta = openFileDialog.FileName;
+            CargarDocumentos_E objcd = new CargarDocumentos_E();
+            TipoDato_E objtd = new TipoDato_E();
+            objcd.data = null;
+            objcd.ruta = openFileDialog.FileName;
             dtgvFrecuenciaRelativa.Rows.Clear();
-            data = File.ReadAllLines(ruta);
+            objcd.data = File.ReadAllLines(objcd.ruta);
 
-            if (data != null)
+            if (objcd.data != null)
             {
-                int validartd = ValidarTipoDato(data);
-                if (validartd == 0)
+                objtd.tipodato = ValidarTipoDato(objcd.data);
+                if (objtd.tipodato == 0)
                 {
-                    CargaDatos(data);
+                    CargaDatos(objcd.data);
                 }
-                else if (validartd == 1)
+                else if (objtd.tipodato == 1)
                 {
                     MessageBox.Show("Se encontraron datos numericos", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
-                else if (validartd == 2)
+                else if (objtd.tipodato == 2)
                 {
                     MessageBox.Show("Se encontraron datos no numericos", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
@@ -418,6 +422,15 @@ namespace WindowsFormEstadistica
 
 
             return validar;
+        }
+
+        private void btnTendeciaCentral_Click(object sender, EventArgs e)
+        {
+            List<TablaFrecuencia_E> DataFinal = new List<TablaFrecuencia_E>();
+            DataFinal = RecuperarDatos();
+
+            Form frombarra = new TendenciaCentral(DataFinal);
+            frombarra.Show();
         }
     }
 }

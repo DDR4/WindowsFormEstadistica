@@ -53,6 +53,7 @@
             // 
             // btn_Actualizar
             // 
+            this.btn_Actualizar.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btn_Actualizar.Location = new System.Drawing.Point(557, 389);
             this.btn_Actualizar.Name = "btn_Actualizar";
             this.btn_Actualizar.Size = new System.Drawing.Size(75, 23);
@@ -63,6 +64,7 @@
             // 
             // btn_Cerrar
             // 
+            this.btn_Cerrar.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btn_Cerrar.Location = new System.Drawing.Point(657, 389);
             this.btn_Cerrar.Name = "btn_Cerrar";
             this.btn_Cerrar.Size = new System.Drawing.Size(75, 23);

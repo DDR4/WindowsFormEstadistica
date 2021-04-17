@@ -41,6 +41,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Mediana_E.cs" />
+    <Compile Include="Intervalo_E.cs" />
+    <Compile Include="TipoDato_E.cs" />
+    <Compile Include="CargarDocumentos_E.cs" />
+    <Compile Include="DatosTotales_E.cs" />
+    <Compile Include="TendenciaCentral_E.cs" />
     <Compile Include="TablaFrecuencia_E.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
