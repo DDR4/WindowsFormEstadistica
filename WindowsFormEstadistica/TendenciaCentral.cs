@@ -27,6 +27,7 @@ namespace WindowsFormsGraficos
         private void btn_Actualizar_Click(object sender, EventArgs e)
         {
             DatosTotales_E dt = new DatosTotales_E();
+            //media
             foreach (var item in DataFinal)
             {
                 dt.sumatotal += item.xi * item.fi;
@@ -35,6 +36,7 @@ namespace WindowsFormsGraficos
 
             txtMedia.Text = Convert.ToString(Math.Round(dt.sumatotal / dt.cantidatotal, 2));
 
+            //moda
             dt.maximafrecuencia = DataFinal.Select(x => x.fi).Max();
             var ltfrecuencoa =  DataFinal.Where(x => x.fi == dt.maximafrecuencia).Select(y => y).FirstOrDefault();
             
@@ -49,13 +51,21 @@ namespace WindowsFormsGraficos
                 txtModa.Text = Convert.ToString(ltfrecuencoa.xi + " (" + ltfrecuencoa.strxi + ")");
             }
 
+            //mediana
             dt.nummediana = dt.cantidatotal / 2;
 
             if ((dt.cantidatotal % 2) == 0)
             {
                 dt.ltmediana = arraydata.OrderBy(x => x).Select((x, i) =>
                               new Mediana_E { index = i, xi = Convert.ToDecimal(x) }).ToList();
-                var mediana = dt.ltmediana.Where(i => i.index == dt.nummediana && i.index == dt.nummediana + 1).Select(x => x.xi).ToList();
+                var tmpmediana = dt.ltmediana.Where(i => i.index == dt.nummediana-1 || i.index == dt.nummediana).ToList();
+
+                decimal summediana = 0;
+                foreach (var item in tmpmediana)
+                {
+                    summediana += item.xi;
+                }
+                txtMediana.Text = Convert.ToString(summediana / 2);
 
             }
             else
