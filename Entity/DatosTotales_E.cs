@@ -12,6 +12,7 @@ namespace Entity
         public int cantidatotal { get; set; }    
         public int maximafrecuencia { get; set; }
         public int nummediana { get; set; }
+
         public List<Mediana_E> ltmediana = new List<Mediana_E>();
     }
 }
