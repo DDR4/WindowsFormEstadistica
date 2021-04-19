@@ -221,21 +221,53 @@ namespace WindowsFormEstadistica
                 for (int i = 0; i < objint.numintervalo; i++)
                 {
                     List<TablaFrecuencia_E> aux_xi_fi = new List<TablaFrecuencia_E>();
-                    aux_xi_fi = objtd.datadecimal.GroupBy(x => x)
-                            .Select(y => new TablaFrecuencia_E { xi = y.Key, fi = y.Count() })
-                            .Where(z => z.xi >= objint.intinf && z.xi <= objint.intsup).ToList();
 
+                    if (i == 0)
+                    {
+                        aux_xi_fi = objtd.datadecimal.GroupBy(x => x)
+                                    .Select(y => new TablaFrecuencia_E { xi = y.Key, fi = y.Count() })
+                                    .Where(z => z.xi >= objint.intinf && z.xi <= objint.intsup).ToList();
+                    }
+                    else
+                    {
+                        aux_xi_fi = objtd.datadecimal.GroupBy(x => x)
+                                    .Select(y => new TablaFrecuencia_E { xi = y.Key, fi = y.Count() })
+                                    .Where(z => z.xi > objint.intinf && z.xi <= objint.intsup).ToList();
+                    }           
+                    
                     objint.fi = aux_xi_fi.Select(x => x.fi).Sum();
+
+                    decimal tmpxi = objint.intinf;
+                    decimal indexxi = objint.intinf;
+                    int numintervalo = 1;
+
+                    while (indexxi < objint.intsup)
+                    {
+                        bool isNumeric = int.TryParse(objint.intinf.ToString(), out int n);
+                        if (isNumeric)
+                        {
+                            indexxi++;
+                            tmpxi += indexxi;
+                            numintervalo++;
+                        }
+                        else
+                        {
+                            indexxi = indexxi + Convert.ToDecimal(0.01);
+                            tmpxi += indexxi;
+                            numintervalo++;
+                        }
+
+                    }
 
                     TablaFrecuencia_E xi = new TablaFrecuencia_E
                     {
                         strxi = string.Concat(objint.intinf, " - ", objint.intsup),
-                        xi = objint.intervalo >= 1 ? ((objint.intsup * objint.intsup + 1)/2)/objint.intsup : 0,
+                        xi = tmpxi/ numintervalo,
                         fi = objint.fi
                     };
-                    var auxintervalo = objint.intervalo < 1 ? objint.intervalo : 1;
-                    objint.intinf = objint.intsup + auxintervalo;
-                    objint.intsup += objint.intervalo + auxintervalo;
+
+                    objint.intinf = objint.intsup;
+                    objint.intsup += objint.intervalo;
 
                     xi_fi.Add(xi);
                 }
@@ -262,17 +294,18 @@ namespace WindowsFormEstadistica
                     {
                         dtgvFrecuenciaRelativa[y++, i].Value = hi[i].xi;
                     }
-          
+                    y++;
                 }
 
                 if (rbnConIntervalo.Checked)
                 {
                     dtgvFrecuenciaRelativa[y++, i].Value = hi[i].strxi;
+                    dtgvFrecuenciaRelativa[y++, i].Value = hi[i].xi;
                 }
 
                 Fi += hi[i].fi;
-                Hi += hi[i].hi;
-                dtgvFrecuenciaRelativa[y++, i].Value = hi[i].fi;
+                Hi += hi[i].hi;           
+                dtgvFrecuenciaRelativa[y++, i].Value = hi[i].fi; 
                 dtgvFrecuenciaRelativa[y++, i].Value = Fi;
                 dtgvFrecuenciaRelativa[y++, i].Value = hi[i].hi;
                 dtgvFrecuenciaRelativa[y++, i].Value = Hi;
@@ -359,6 +392,7 @@ namespace WindowsFormEstadistica
                     if (rbnConIntervalo.Checked)
                     {
                         obj.strxi = Convert.ToString(dr.Cells["xi"].Value);
+                        obj.xi = Convert.ToDecimal(dr.Cells["tmpxi"].Value);
                     }
 
                     obj.fi = Convert.ToInt32(dr.Cells["fi"].Value);
@@ -412,7 +446,7 @@ namespace WindowsFormEstadistica
                 {
                     bool isNumeric = int.TryParse(item, out int n);
 
-                    if (!isNumeric)
+                    if (!isNumeric && (item.Equals(",") && item.Equals(".")))
                     {
                         validar = 2;
                         break;
@@ -429,7 +463,13 @@ namespace WindowsFormEstadistica
             List<TablaFrecuencia_E> DataFinal = new List<TablaFrecuencia_E>();
             DataFinal = RecuperarDatos();
 
-            Form frombarra = new TendenciaCentral(DataFinal);
+            CargarDocumentos_E objcd = new CargarDocumentos_E();
+            TipoDato_E objtd = new TipoDato_E();
+            objcd.data = null;
+            objcd.ruta = openFileDialog.FileName;
+            objcd.data = File.ReadAllLines(objcd.ruta);
+
+            Form frombarra = new TendenciaCentral(DataFinal,objcd.data);
             frombarra.Show();
         }
     }

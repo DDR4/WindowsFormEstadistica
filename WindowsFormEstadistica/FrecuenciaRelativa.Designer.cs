@@ -33,11 +33,6 @@
             this.btnArchivo = new System.Windows.Forms.Button();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.dtgvFrecuenciaRelativa = new System.Windows.Forms.DataGridView();
-            this.xi = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fi = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.F = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ni = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.N = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.rbnSinIntervalo = new System.Windows.Forms.RadioButton();
             this.rbnConIntervalo = new System.Windows.Forms.RadioButton();
             this.txtIntervaloSuperior = new System.Windows.Forms.TextBox();
@@ -55,6 +50,12 @@
             this.btnGraficaBarra = new System.Windows.Forms.Button();
             this.btnGraficaPie = new System.Windows.Forms.Button();
             this.btnTendeciaCentral = new System.Windows.Forms.Button();
+            this.xi = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tmpxi = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fi = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.F = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ni = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.N = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dtgvFrecuenciaRelativa)).BeginInit();
             this.gbIntervalo.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -97,6 +98,7 @@
             this.dtgvFrecuenciaRelativa.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtgvFrecuenciaRelativa.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.xi,
+            this.tmpxi,
             this.fi,
             this.F,
             this.ni,
@@ -105,31 +107,6 @@
             this.dtgvFrecuenciaRelativa.Name = "dtgvFrecuenciaRelativa";
             this.dtgvFrecuenciaRelativa.Size = new System.Drawing.Size(536, 261);
             this.dtgvFrecuenciaRelativa.TabIndex = 3;
-            // 
-            // xi
-            // 
-            this.xi.HeaderText = "xi";
-            this.xi.Name = "xi";
-            // 
-            // fi
-            // 
-            this.fi.HeaderText = "fi";
-            this.fi.Name = "fi";
-            // 
-            // F
-            // 
-            this.F.HeaderText = "F";
-            this.F.Name = "F";
-            // 
-            // ni
-            // 
-            this.ni.HeaderText = "ni";
-            this.ni.Name = "ni";
-            // 
-            // N
-            // 
-            this.N.HeaderText = "N";
-            this.N.Name = "N";
             // 
             // rbnSinIntervalo
             // 
@@ -320,6 +297,37 @@
             this.btnTendeciaCentral.UseVisualStyleBackColor = true;
             this.btnTendeciaCentral.Click += new System.EventHandler(this.btnTendeciaCentral_Click);
             // 
+            // xi
+            // 
+            this.xi.HeaderText = "xi";
+            this.xi.Name = "xi";
+            // 
+            // tmpxi
+            // 
+            this.tmpxi.HeaderText = "tmpxi";
+            this.tmpxi.Name = "tmpxi";
+            this.tmpxi.Visible = false;
+            // 
+            // fi
+            // 
+            this.fi.HeaderText = "fi";
+            this.fi.Name = "fi";
+            // 
+            // F
+            // 
+            this.F.HeaderText = "F";
+            this.F.Name = "F";
+            // 
+            // ni
+            // 
+            this.ni.HeaderText = "ni";
+            this.ni.Name = "ni";
+            // 
+            // N
+            // 
+            this.N.HeaderText = "N";
+            this.N.Name = "N";
+            // 
             // FrecuenciaRelativa
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -372,12 +380,13 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button btnGraficaBarra;
         private System.Windows.Forms.Button btnGraficaPie;
+        private System.Windows.Forms.Button btnTendeciaCentral;
         private System.Windows.Forms.DataGridViewTextBoxColumn xi;
+        private System.Windows.Forms.DataGridViewTextBoxColumn tmpxi;
         private System.Windows.Forms.DataGridViewTextBoxColumn fi;
         private System.Windows.Forms.DataGridViewTextBoxColumn F;
         private System.Windows.Forms.DataGridViewTextBoxColumn ni;
         private System.Windows.Forms.DataGridViewTextBoxColumn N;
-        private System.Windows.Forms.Button btnTendeciaCentral;
     }
 }
 

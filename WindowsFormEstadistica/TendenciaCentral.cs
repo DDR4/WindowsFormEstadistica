@@ -16,9 +16,11 @@ namespace WindowsFormsGraficos
     public partial class TendenciaCentral : Form
     {
         private readonly List<TablaFrecuencia_E> DataFinal;
-        public TendenciaCentral(List<TablaFrecuencia_E> Data)
+        private readonly string[] arraydata;
+        public TendenciaCentral(List<TablaFrecuencia_E> Data,string[] data)
         {
             DataFinal = Data;
+            arraydata = data;
             InitializeComponent();
         }
 
@@ -31,27 +33,39 @@ namespace WindowsFormsGraficos
                 dt.cantidatotal += item.fi;
             }
 
-            int mf = DataFinal.Select(x => x.fi).Max();
-            dt.maximafrecuencia = DataFinal.Where(x => x.fi == mf).Select(y => y.xi).FirstOrDefault();           
+            txtMedia.Text = Convert.ToString(Math.Round(dt.sumatotal / dt.cantidatotal, 2));
+
+            dt.maximafrecuencia = DataFinal.Select(x => x.fi).Max();
+            var ltfrecuencoa =  DataFinal.Where(x => x.fi == dt.maximafrecuencia).Select(y => y).FirstOrDefault();
+            
+            bool isNumeric = int.TryParse(ltfrecuencoa.xi.ToString(), out int n);
+
+            if (isNumeric)
+            {
+                txtModa.Text = Convert.ToString(ltfrecuencoa.xi);
+            }
+            else if (!isNumeric)
+            {
+                txtModa.Text = Convert.ToString(ltfrecuencoa.xi + " (" + ltfrecuencoa.strxi + ")");
+            }
+
+            dt.nummediana = dt.cantidatotal / 2;
 
             if ((dt.cantidatotal % 2) == 0)
             {
-                dt.nummediana = dt.cantidatotal / 2;
-                //dt.ltmediana = DataFinal.OrderBy(x => x.xi).Select((x, i) =>
-                //              new Mediana_E { index = i, xi = x.xi }).ToList();
-                //txtMediana.Text = dt.ltmediana.Select(x => x.xi).Where(i => i == dt.nummediana)
-                //                  .FirstOrDefault().ToString();
+                dt.ltmediana = arraydata.OrderBy(x => x).Select((x, i) =>
+                              new Mediana_E { index = i, xi = Convert.ToDecimal(x) }).ToList();
+                var mediana = dt.ltmediana.Where(i => i.index == dt.nummediana && i.index == dt.nummediana + 1).Select(x => x.xi).ToList();
+
+            }
+            else
+            {
+               dt.ltmediana = arraydata.OrderBy(x => x).Select((x, i) =>
+                              new Mediana_E { index = i, xi = Convert.ToDecimal(x) }).ToList();
+                txtMediana.Text = dt.ltmediana.Where(i => i.index == dt.nummediana).Select(x => x.xi).FirstOrDefault().ToString();
             }
 
-            //int i = 0;
-          
-
-            txtMedia.Text = Convert.ToString(dt.sumatotal/dt.cantidatotal);
-            txtModa.Text = Convert.ToString(dt.maximafrecuencia);
-
-
-
-
+            
         }
 
         private void btn_Cerrar_Click(object sender, EventArgs e)
