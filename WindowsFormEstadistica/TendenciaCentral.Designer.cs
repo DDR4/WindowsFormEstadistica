@@ -81,26 +81,26 @@
             // 
             // txtModa
             // 
-            this.txtModa.Location = new System.Drawing.Point(121, 157);
+            this.txtModa.Location = new System.Drawing.Point(104, 157);
             this.txtModa.Name = "txtModa";
             this.txtModa.ReadOnly = true;
-            this.txtModa.Size = new System.Drawing.Size(78, 20);
+            this.txtModa.Size = new System.Drawing.Size(95, 20);
             this.txtModa.TabIndex = 5;
             // 
             // txtMediana
             // 
-            this.txtMediana.Location = new System.Drawing.Point(121, 99);
+            this.txtMediana.Location = new System.Drawing.Point(104, 99);
             this.txtMediana.Name = "txtMediana";
             this.txtMediana.ReadOnly = true;
-            this.txtMediana.Size = new System.Drawing.Size(78, 20);
+            this.txtMediana.Size = new System.Drawing.Size(95, 20);
             this.txtMediana.TabIndex = 4;
             // 
             // txtMedia
             // 
-            this.txtMedia.Location = new System.Drawing.Point(121, 49);
+            this.txtMedia.Location = new System.Drawing.Point(104, 49);
             this.txtMedia.Name = "txtMedia";
             this.txtMedia.ReadOnly = true;
-            this.txtMedia.Size = new System.Drawing.Size(78, 20);
+            this.txtMedia.Size = new System.Drawing.Size(95, 20);
             this.txtMedia.TabIndex = 3;
             // 
             // lblMediana

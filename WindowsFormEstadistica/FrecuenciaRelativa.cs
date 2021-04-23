@@ -411,6 +411,7 @@ namespace WindowsFormEstadistica
             if (rbnTexto.Checked)
             {
                 rbnConIntervalo.Enabled = false;
+                btnTendeciaCentral.Enabled = false;
             }         
         }
 
@@ -420,6 +421,7 @@ namespace WindowsFormEstadistica
             {
                 rbnConIntervalo.Enabled = true;
                 rbnSinIntervalo.Enabled = true;
+                btnTendeciaCentral.Enabled = true;
             }
         }
 
