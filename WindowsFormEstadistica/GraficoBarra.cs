@@ -21,10 +21,10 @@ namespace WindowsFormsGraficos
         {
             DataFinal = Data;
             InitializeComponent();
+            CargaDatos();
         }
 
-        private void btn_Actualizar_Click(object sender, EventArgs e)
-        {
+        private void CargaDatos() {
             DataTable dt = new DataTable();
             using (var reader = ObjectReader.Create(DataFinal))
             {
@@ -39,9 +39,9 @@ namespace WindowsFormsGraficos
             ChartArea areagrafica = new ChartArea();
             Grafico.ChartAreas.Add(areagrafica);
 
-            Title titulo = new Title("Grafica de Barra");
-            titulo.Font = new Font("Arial", 10, FontStyle.Bold);
-            Grafico.Titles.Add(titulo);               
+            Title titulo = new Title("Grafica de Barra (Frecuencia Absoluta)");
+            titulo.Font = new Font("Arial", 15, FontStyle.Bold);
+            Grafico.Titles.Add(titulo);
 
             foreach (DataRow dr in dt.Rows)
             {
@@ -49,13 +49,14 @@ namespace WindowsFormsGraficos
                 Series serie = Grafico.Series.Add(strserie);
                 serie.Label = dr.ItemArray[0].ToString();
                 serie.Points.Add(Convert.ToDouble(dr.ItemArray[0]));
-            }                      
 
+            }
         }
 
         private void btn_Cerrar_Click(object sender, EventArgs e)
         {
             Close();
         }
+
     }
 }

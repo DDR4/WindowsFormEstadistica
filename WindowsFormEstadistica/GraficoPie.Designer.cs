@@ -31,7 +31,6 @@
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             this.Grafico = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.btn_Actualizar = new System.Windows.Forms.Button();
             this.btn_Cerrar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.Grafico)).BeginInit();
             this.SuspendLayout();
@@ -51,17 +50,6 @@
             this.Grafico.TabIndex = 0;
             this.Grafico.Text = "chart1";
             // 
-            // btn_Actualizar
-            // 
-            this.btn_Actualizar.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btn_Actualizar.Location = new System.Drawing.Point(557, 389);
-            this.btn_Actualizar.Name = "btn_Actualizar";
-            this.btn_Actualizar.Size = new System.Drawing.Size(75, 23);
-            this.btn_Actualizar.TabIndex = 1;
-            this.btn_Actualizar.Text = "Actualizar";
-            this.btn_Actualizar.UseVisualStyleBackColor = true;
-            this.btn_Actualizar.Click += new System.EventHandler(this.btn_Actualizar_Click);
-            // 
             // btn_Cerrar
             // 
             this.btn_Cerrar.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -79,7 +67,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(794, 441);
             this.Controls.Add(this.btn_Cerrar);
-            this.Controls.Add(this.btn_Actualizar);
             this.Controls.Add(this.Grafico);
             this.Name = "GraficoPie";
             this.Text = "Grafico Pie";
@@ -91,7 +78,6 @@
         #endregion
 
         private System.Windows.Forms.DataVisualization.Charting.Chart Grafico;
-        private System.Windows.Forms.Button btn_Actualizar;
         private System.Windows.Forms.Button btn_Cerrar;
     }
 }

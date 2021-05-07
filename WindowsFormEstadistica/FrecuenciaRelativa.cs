@@ -351,8 +351,15 @@ namespace WindowsFormEstadistica
             List<TablaFrecuencia_E> DataFinal = new List<TablaFrecuencia_E>();
             DataFinal = RecuperarDatos();
 
-            Form frombarra = new GraficoBarra(DataFinal);
-            frombarra.Show();
+            if (DataFinal.Count == 0)
+            {
+                MessageBox.Show("Se deben cargar datos previamente", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else
+            {
+                Form frombarra = new GraficoBarra(DataFinal);
+                frombarra.Show();
+            }
         }
 
         private void btnGraficaPie_Click(object sender, EventArgs e)
@@ -360,8 +367,15 @@ namespace WindowsFormEstadistica
             List<TablaFrecuencia_E> DataFinal = new List<TablaFrecuencia_E>();
             DataFinal = RecuperarDatos();
 
-            Form frompie = new GraficoPie(DataFinal);
-            frompie.Show();
+            if (DataFinal.Count == 0)
+            {
+                MessageBox.Show("Se deben cargar datos previamente", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else
+            {
+                Form frompie = new GraficoPie(DataFinal);
+                frompie.Show();
+            }
         }
 
         public List<TablaFrecuencia_E> RecuperarDatos()
@@ -410,6 +424,7 @@ namespace WindowsFormEstadistica
         {
             if (rbnTexto.Checked)
             {
+                rbnSinIntervalo.Checked = true;
                 rbnConIntervalo.Enabled = false;
                 btnTendeciaCentral.Enabled = false;
             }         
@@ -432,7 +447,7 @@ namespace WindowsFormEstadistica
             {
                 foreach (var item in data)
                 {
-                    bool isNumeric = int.TryParse(item, out int n);
+                    bool isNumeric = decimal.TryParse(item.ToString(), out decimal n);
 
                     if (isNumeric)
                     {
@@ -446,13 +461,14 @@ namespace WindowsFormEstadistica
             {
                 foreach (var item in data)
                 {
-                    bool isNumeric = int.TryParse(item, out int n);
+                    bool isNumeric = decimal.TryParse(item.ToString(), out decimal n);
 
-                    if (!isNumeric && (item.Equals(",") && item.Equals(".")))
+                    if (!isNumeric)
                     {
                         validar = 2;
                         break;
-                    }
+                    }                    
+                    
                 }
             }
 
@@ -465,14 +481,21 @@ namespace WindowsFormEstadistica
             List<TablaFrecuencia_E> DataFinal = new List<TablaFrecuencia_E>();
             DataFinal = RecuperarDatos();
 
-            CargarDocumentos_E objcd = new CargarDocumentos_E();
-            TipoDato_E objtd = new TipoDato_E();
-            objcd.data = null;
-            objcd.ruta = openFileDialog.FileName;
-            objcd.data = File.ReadAllLines(objcd.ruta);
+            if (DataFinal.Count == 0)
+            {
+                MessageBox.Show("Se deben cargar datos previamente", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else
+            {
+                CargarDocumentos_E objcd = new CargarDocumentos_E();
+                TipoDato_E objtd = new TipoDato_E();
+                objcd.data = null;
+                objcd.ruta = openFileDialog.FileName;
+                objcd.data = File.ReadAllLines(objcd.ruta);
 
-            Form frombarra = new TendenciaCentral(DataFinal,objcd.data);
-            frombarra.Show();
+                Form frombarra = new TendenciaCentral(DataFinal, objcd.data);
+                frombarra.Show();
+            }
         }
     }
 }

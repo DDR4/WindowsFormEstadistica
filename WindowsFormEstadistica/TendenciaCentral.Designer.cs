@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.btn_Actualizar = new System.Windows.Forms.Button();
             this.btn_Cerrar = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.txtModa = new System.Windows.Forms.TextBox();
@@ -40,23 +39,11 @@
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // btn_Actualizar
-            // 
-            this.btn_Actualizar.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btn_Actualizar.AutoSize = true;
-            this.btn_Actualizar.Location = new System.Drawing.Point(69, 265);
-            this.btn_Actualizar.Name = "btn_Actualizar";
-            this.btn_Actualizar.Size = new System.Drawing.Size(89, 23);
-            this.btn_Actualizar.TabIndex = 1;
-            this.btn_Actualizar.Text = "Actualizar";
-            this.btn_Actualizar.UseVisualStyleBackColor = true;
-            this.btn_Actualizar.Click += new System.EventHandler(this.btn_Actualizar_Click);
-            // 
             // btn_Cerrar
             // 
             this.btn_Cerrar.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btn_Cerrar.AutoSize = true;
-            this.btn_Cerrar.Location = new System.Drawing.Point(176, 265);
+            this.btn_Cerrar.Location = new System.Drawing.Point(126, 268);
             this.btn_Cerrar.Name = "btn_Cerrar";
             this.btn_Cerrar.Size = new System.Drawing.Size(93, 23);
             this.btn_Cerrar.TabIndex = 2;
@@ -137,7 +124,6 @@
             this.ClientSize = new System.Drawing.Size(321, 327);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btn_Cerrar);
-            this.Controls.Add(this.btn_Actualizar);
             this.Name = "TendenciaCentral";
             this.Text = "Tendecia de Medida Central";
             this.groupBox1.ResumeLayout(false);
@@ -148,7 +134,6 @@
         }
 
         #endregion
-        private System.Windows.Forms.Button btn_Actualizar;
         private System.Windows.Forms.Button btn_Cerrar;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TextBox txtModa;

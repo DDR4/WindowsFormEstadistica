@@ -20,9 +20,10 @@ namespace WindowsFormsGraficos
         {
             DataFinal = Data;
             InitializeComponent();
+            CargaDatos();
         }
 
-        private void btn_Actualizar_Click(object sender, EventArgs e)
+        private void CargaDatos()
         {
             DataTable dt = new DataTable();
             using (var reader = ObjectReader.Create(DataFinal))
@@ -40,10 +41,10 @@ namespace WindowsFormsGraficos
             areagrafica.Area3DStyle.Inclination = 25;
             Grafico.ChartAreas.Add(areagrafica);
 
-            Title titulo = new Title("Grafica de Pie");
+            Title titulo = new Title("Grafica de Pie (Frecuencia Relativa)");
             titulo.Font = new Font("Arial", 15, FontStyle.Bold);
             Grafico.Titles.Add(titulo);
-            
+
 
 
             string nombreserie = "GraficoPie";
@@ -58,13 +59,13 @@ namespace WindowsFormsGraficos
             {
                 string strserie = string.IsNullOrEmpty(dr.ItemArray[4].ToString()) ? dr.ItemArray[5].ToString() : dr.ItemArray[4].ToString();
                 Grafico.Series[nombreserie].Points.AddXY(strserie, dr.ItemArray[2]);
-            }            
-
+            }
         }
 
         private void btn_Cerrar_Click(object sender, EventArgs e)
         {
             Close();
         }
+
     }
 }

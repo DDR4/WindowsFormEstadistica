@@ -22,10 +22,10 @@ namespace WindowsFormsGraficos
             DataFinal = Data;
             arraydata = data;
             InitializeComponent();
+            CargarDatos();
         }
 
-        private void btn_Actualizar_Click(object sender, EventArgs e)
-        {
+        private void CargarDatos() {
             DatosTotales_E dt = new DatosTotales_E();
             TendeciaCentral_E objtc = new TendeciaCentral_E();
 
@@ -58,14 +58,14 @@ namespace WindowsFormsGraficos
             else
             {
                 dt.ltmediana = arraydata.OrderBy(x => x).Select((x, i) =>
-                               new Mediana_E { index = i, xi = Convert.ToDecimal(x) }).ToList();       
+                               new Mediana_E { index = i, xi = Convert.ToDecimal(x) }).ToList();
                 objtc.mediana = dt.ltmediana.Where(i => i.index == dt.nummediana).Select(x => x.xi).FirstOrDefault();
             }
 
             //moda
             dt.maximafrecuencia = DataFinal.Select(x => x.fi).Max();
-            var ltfrecuencia =  DataFinal.Where(x => x.fi == dt.maximafrecuencia).Select(y => y).FirstOrDefault();
-            
+            var ltfrecuencia = DataFinal.Where(x => x.fi == dt.maximafrecuencia).Select(y => y).FirstOrDefault();
+
             bool isNumeric = int.TryParse(ltfrecuencia.xi.ToString(), out int n);
             string msj = "";
 
@@ -77,14 +77,11 @@ namespace WindowsFormsGraficos
             {
                 objtc.moda = ltfrecuencia.xi;
                 msj = ltfrecuencia.xi + " (" + ltfrecuencia.strxi + ")";
-            }           
+            }
 
             txtMedia.Text = objtc.media.ToString();
             txtMediana.Text = objtc.mediana.ToString();
-            txtModa.Text = msj == "" ? objtc.moda.ToString()  : msj;
-
-            
-
+            txtModa.Text = msj == "" ? objtc.moda.ToString() : msj;
         }
 
         private void btn_Cerrar_Click(object sender, EventArgs e)
