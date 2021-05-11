@@ -186,7 +186,7 @@ namespace WindowsFormEstadistica
 
                 if (rbnNumerico.Checked)
                 {
-                    objtd.datadecimal.Add(decimal.Parse(item.Replace('.', ',')));
+                    objtd.datadecimal.Add(decimal.Parse(item.Replace(',', '.')));
                 }
             }
 
@@ -214,26 +214,17 @@ namespace WindowsFormEstadistica
             {
                 Intervalo_E objint = new Intervalo_E();
                 objint.numintervalo = Convert.ToInt32(txtInvertavalos.Text);
-                objint.intervalo = Convert.ToDecimal(txtIntervaloSuperior.Text.Replace('.', ',')) - Convert.ToDecimal(txtIntervaloInferior.Text.Replace('.', ','));
-                objint.intinf = Convert.ToDecimal(txtIntervaloInferior.Text.Replace('.', ','));
-                objint.intsup = Convert.ToDecimal(txtIntervaloSuperior.Text.Replace('.', ','));
+                objint.intervalo = Convert.ToDecimal(txtIntervaloSuperior.Text.Replace(',', '.')) - Convert.ToDecimal(txtIntervaloInferior.Text.Replace(',', '.'));
+                objint.intinf = Convert.ToDecimal(txtIntervaloInferior.Text.Replace(',', '.'));
+                objint.intsup = Convert.ToDecimal(txtIntervaloSuperior.Text.Replace(',', '.'));
                 objint.fi = 0;
                 for (int i = 0; i < objint.numintervalo; i++)
                 {
                     List<TablaFrecuencia_E> aux_xi_fi = new List<TablaFrecuencia_E>();
 
-                    if (i == 0)
-                    {
-                        aux_xi_fi = objtd.datadecimal.GroupBy(x => x)
-                                    .Select(y => new TablaFrecuencia_E { xi = y.Key, fi = y.Count() })
-                                    .Where(z => z.xi >= objint.intinf && z.xi <= objint.intsup).ToList();
-                    }
-                    else
-                    {
-                        aux_xi_fi = objtd.datadecimal.GroupBy(x => x)
-                                    .Select(y => new TablaFrecuencia_E { xi = y.Key, fi = y.Count() })
-                                    .Where(z => z.xi > objint.intinf && z.xi <= objint.intsup).ToList();
-                    }           
+                    aux_xi_fi = objtd.datadecimal.GroupBy(x => x)
+                                .Select(y => new TablaFrecuencia_E { xi = y.Key, fi = y.Count() })
+                                .Where(z => z.xi >= objint.intinf && z.xi <= objint.intsup).ToList();     
                     
                     objint.fi = aux_xi_fi.Select(x => x.fi).Sum();
 
@@ -266,8 +257,8 @@ namespace WindowsFormEstadistica
                         fi = objint.fi
                     };
 
-                    objint.intinf = objint.intsup;
-                    objint.intsup += objint.intervalo;
+                    objint.intinf = objint.intsup + (objint.intervalo >= 1 ? 1 : Convert.ToDecimal(0.01));
+                    objint.intsup += objint.intervalo + (objint.intervalo >= 1 ? 1 : Convert.ToDecimal(0.01));
 
                     xi_fi.Add(xi);
                 }
