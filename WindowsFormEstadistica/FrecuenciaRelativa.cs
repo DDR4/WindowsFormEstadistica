@@ -129,14 +129,14 @@ namespace WindowsFormEstadistica
         private void txtIntervaloSuperior_KeyPress(object sender, KeyPressEventArgs e)
         {
             ValidarDatos.SoloDecimales(txtIntervaloSuperior, e);
-            int numero = ValidarDatos.NumeroCaracteresDecimales(txtIntervaloSuperior, lenintervalo, numdecimales,e);
+            int numero = ValidarDatos.NumeroCaracteresDecimales(txtIntervaloSuperior, lenintervalo,e);
             ValidarDatos.MaximoCaracteresDecimales(txtIntervaloSuperior, numero, numdecimales, e);
         }
 
         private void txtIntervaloInferior_KeyPress(object sender, KeyPressEventArgs e)
         {
             ValidarDatos.SoloDecimales(txtIntervaloInferior, e);
-            int numero = ValidarDatos.NumeroCaracteresDecimales(txtIntervaloInferior, lenintervalo, numdecimales, e);
+            int numero = ValidarDatos.NumeroCaracteresDecimales(txtIntervaloInferior, lenintervalo, e);
             ValidarDatos.MaximoCaracteresDecimales(txtIntervaloInferior, numero, numdecimales, e);
         }
 
