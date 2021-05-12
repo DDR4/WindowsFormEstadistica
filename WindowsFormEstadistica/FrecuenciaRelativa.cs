@@ -20,6 +20,10 @@ namespace WindowsFormEstadistica
             InitializeComponent();
         }
 
+        int numintervalo = 2;
+        int lenintervalo = 4;
+        int numdecimales = 2;
+
         private bool Validar_btnArchivo()
         {
             bool validar = false;
@@ -125,21 +129,21 @@ namespace WindowsFormEstadistica
         private void txtIntervaloSuperior_KeyPress(object sender, KeyPressEventArgs e)
         {
             ValidarDatos.SoloDecimales(txtIntervaloSuperior, e);
-            int numero = ValidarDatos.NumeroCaracteresDecimales(txtIntervaloSuperior, 2, e);
-            ValidarDatos.MaximoCaracteresDecimales(txtIntervaloSuperior, numero, 2, e);
+            int numero = ValidarDatos.NumeroCaracteresDecimales(txtIntervaloSuperior, lenintervalo, numdecimales,e);
+            ValidarDatos.MaximoCaracteresDecimales(txtIntervaloSuperior, numero, numdecimales, e);
         }
 
         private void txtIntervaloInferior_KeyPress(object sender, KeyPressEventArgs e)
         {
             ValidarDatos.SoloDecimales(txtIntervaloInferior, e);
-            int numero = ValidarDatos.NumeroCaracteresDecimales(txtIntervaloInferior, 2, e);
-            ValidarDatos.MaximoCaracteresDecimales(txtIntervaloInferior, numero, 2, e);
+            int numero = ValidarDatos.NumeroCaracteresDecimales(txtIntervaloInferior, lenintervalo, numdecimales, e);
+            ValidarDatos.MaximoCaracteresDecimales(txtIntervaloInferior, numero, numdecimales, e);
         }
 
         private void txtInvertavalos_KeyPress(object sender, KeyPressEventArgs e)
         {
             ValidarDatos.SoloNumeros(e);
-            ValidarDatos.MaximoCaracteresEnteros(txtInvertavalos, 2, e);
+            ValidarDatos.MaximoCaracteresEnteros(txtInvertavalos, numintervalo, e);
         }
 
         public string[] CargaDocumento()

@@ -63,7 +63,7 @@ namespace WindowsFormEstadistica
             {
                 numero = maxnumeros;
             }
-            else if (v.KeyChar.ToString().Equals(".") || textBox.Text.Length >= maxnumeros)
+            else if (textBox.Text.Contains(".") || textBox.Text.Length >= maxnumeros)
             {
                 numero = strarray[0].Length;
             }
@@ -78,10 +78,11 @@ namespace WindowsFormEstadistica
             {
                 v.Handled = true;
             }
-            else if (textBox.Text.Length == decimales && v.KeyChar != Convert.ToChar(Keys.Back))
+            else if (textBox.Text.Length == decimales && textBox.Text.Contains(".")  && v.KeyChar != Convert.ToChar(Keys.Back))
             {
-                v.Handled = true;
-            }
+                    v.Handled = true;
+            }       
+           
         }
 
         public static void MaximoCaracteresEnteros(TextBox textBox, int enteros, KeyPressEventArgs v)
