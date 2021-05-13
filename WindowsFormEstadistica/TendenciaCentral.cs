@@ -17,7 +17,7 @@ namespace WindowsFormsGraficos
     {
         private readonly List<TablaFrecuencia_E> DataFinal;
         private readonly string[] arraydata;
-        public TendenciaCentral(List<TablaFrecuencia_E> Data,string[] data)
+        public TendenciaCentral(List<TablaFrecuencia_E> Data, string[] data)
         {
             DataFinal = Data;
             arraydata = data;
@@ -65,23 +65,23 @@ namespace WindowsFormsGraficos
             //moda
             dt.maximafrecuencia = DataFinal.Select(x => x.fi).Max();
             var ltfrecuencia = DataFinal.Where(x => x.fi == dt.maximafrecuencia).Select(y => y).FirstOrDefault();
-
-            bool isNumeric = int.TryParse(ltfrecuencia.xi.ToString(), out int n);
             string msj = "";
 
-            if (isNumeric)
+
+            if (string.IsNullOrEmpty(ltfrecuencia.strxi))
             {
                 objtc.moda = ltfrecuencia.xi;
             }
-            else if (!isNumeric)
+            else 
             {
                 objtc.moda = ltfrecuencia.xi;
                 msj = ltfrecuencia.xi + " (" + ltfrecuencia.strxi + ")";
-            }
+            }          
 
             txtMedia.Text = objtc.media.ToString();
             txtMediana.Text = objtc.mediana.ToString();
             txtModa.Text = msj == "" ? objtc.moda.ToString() : msj;
+
         }
 
         private void btn_Cerrar_Click(object sender, EventArgs e)
