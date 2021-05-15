@@ -108,6 +108,7 @@
             this.dtgvFrecuenciaRelativa.Name = "dtgvFrecuenciaRelativa";
             this.dtgvFrecuenciaRelativa.Size = new System.Drawing.Size(535, 318);
             this.dtgvFrecuenciaRelativa.TabIndex = 3;
+            this.dtgvFrecuenciaRelativa.TabStop = false;
             // 
             // xi
             // 
@@ -147,7 +148,7 @@
             this.rbnSinIntervalo.Location = new System.Drawing.Point(12, 23);
             this.rbnSinIntervalo.Name = "rbnSinIntervalo";
             this.rbnSinIntervalo.Size = new System.Drawing.Size(115, 24);
-            this.rbnSinIntervalo.TabIndex = 5;
+            this.rbnSinIntervalo.TabIndex = 7;
             this.rbnSinIntervalo.TabStop = true;
             this.rbnSinIntervalo.Text = "Sin Intervalo";
             this.rbnSinIntervalo.UseVisualStyleBackColor = true;
@@ -160,7 +161,7 @@
             this.rbnConIntervalo.Location = new System.Drawing.Point(164, 23);
             this.rbnConIntervalo.Name = "rbnConIntervalo";
             this.rbnConIntervalo.Size = new System.Drawing.Size(88, 24);
-            this.rbnConIntervalo.TabIndex = 6;
+            this.rbnConIntervalo.TabIndex = 8;
             this.rbnConIntervalo.TabStop = true;
             this.rbnConIntervalo.Text = "Intervalo";
             this.rbnConIntervalo.UseVisualStyleBackColor = true;
@@ -172,7 +173,7 @@
             this.txtIntervaloSuperior.Location = new System.Drawing.Point(217, 85);
             this.txtIntervaloSuperior.Name = "txtIntervaloSuperior";
             this.txtIntervaloSuperior.Size = new System.Drawing.Size(84, 24);
-            this.txtIntervaloSuperior.TabIndex = 7;
+            this.txtIntervaloSuperior.TabIndex = 11;
             this.txtIntervaloSuperior.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtIntervaloSuperior_KeyPress);
             // 
             // txtIntervaloInferior
@@ -181,7 +182,7 @@
             this.txtIntervaloInferior.Location = new System.Drawing.Point(111, 85);
             this.txtIntervaloInferior.Name = "txtIntervaloInferior";
             this.txtIntervaloInferior.Size = new System.Drawing.Size(80, 24);
-            this.txtIntervaloInferior.TabIndex = 8;
+            this.txtIntervaloInferior.TabIndex = 10;
             this.txtIntervaloInferior.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtIntervaloInferior_KeyPress);
             // 
             // lblSuperior
@@ -220,7 +221,7 @@
             this.txtInvertavalos.Location = new System.Drawing.Point(12, 85);
             this.txtInvertavalos.Name = "txtInvertavalos";
             this.txtInvertavalos.Size = new System.Drawing.Size(74, 24);
-            this.txtInvertavalos.TabIndex = 11;
+            this.txtInvertavalos.TabIndex = 9;
             this.txtInvertavalos.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtInvertavalos_KeyPress);
             // 
             // btnRefrescar
@@ -229,7 +230,7 @@
             this.btnRefrescar.Location = new System.Drawing.Point(426, 42);
             this.btnRefrescar.Name = "btnRefrescar";
             this.btnRefrescar.Size = new System.Drawing.Size(88, 25);
-            this.btnRefrescar.TabIndex = 13;
+            this.btnRefrescar.TabIndex = 3;
             this.btnRefrescar.Text = "Refrescar";
             this.btnRefrescar.UseVisualStyleBackColor = true;
             this.btnRefrescar.Click += new System.EventHandler(this.btnRefrescar_Click);
@@ -240,7 +241,7 @@
             this.btnLimpiar.Location = new System.Drawing.Point(529, 42);
             this.btnLimpiar.Name = "btnLimpiar";
             this.btnLimpiar.Size = new System.Drawing.Size(82, 25);
-            this.btnLimpiar.TabIndex = 14;
+            this.btnLimpiar.TabIndex = 4;
             this.btnLimpiar.Text = "Limpiar";
             this.btnLimpiar.UseVisualStyleBackColor = true;
             this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
@@ -252,7 +253,7 @@
             this.rbnNumerico.Location = new System.Drawing.Point(90, 19);
             this.rbnNumerico.Name = "rbnNumerico";
             this.rbnNumerico.Size = new System.Drawing.Size(94, 24);
-            this.rbnNumerico.TabIndex = 17;
+            this.rbnNumerico.TabIndex = 6;
             this.rbnNumerico.TabStop = true;
             this.rbnNumerico.Text = "Numerico";
             this.rbnNumerico.UseVisualStyleBackColor = true;
@@ -265,7 +266,7 @@
             this.rbnTexto.Location = new System.Drawing.Point(14, 17);
             this.rbnTexto.Name = "rbnTexto";
             this.rbnTexto.Size = new System.Drawing.Size(66, 24);
-            this.rbnTexto.TabIndex = 16;
+            this.rbnTexto.TabIndex = 5;
             this.rbnTexto.TabStop = true;
             this.rbnTexto.Text = "Texto";
             this.rbnTexto.UseVisualStyleBackColor = true;
@@ -307,7 +308,7 @@
             this.btnGraficaBarra.Location = new System.Drawing.Point(293, 565);
             this.btnGraficaBarra.Name = "btnGraficaBarra";
             this.btnGraficaBarra.Size = new System.Drawing.Size(129, 26);
-            this.btnGraficaBarra.TabIndex = 20;
+            this.btnGraficaBarra.TabIndex = 13;
             this.btnGraficaBarra.Text = "Grafica Barra";
             this.btnGraficaBarra.UseVisualStyleBackColor = true;
             this.btnGraficaBarra.Click += new System.EventHandler(this.btnGraficaBarra_Click);
@@ -318,7 +319,7 @@
             this.btnGraficaPie.Location = new System.Drawing.Point(477, 565);
             this.btnGraficaPie.Name = "btnGraficaPie";
             this.btnGraficaPie.Size = new System.Drawing.Size(134, 26);
-            this.btnGraficaPie.TabIndex = 21;
+            this.btnGraficaPie.TabIndex = 14;
             this.btnGraficaPie.Text = "Grafica Pie";
             this.btnGraficaPie.UseVisualStyleBackColor = true;
             this.btnGraficaPie.Click += new System.EventHandler(this.btnGraficaPie_Click);
@@ -329,7 +330,7 @@
             this.btnTendeciaCentral.Location = new System.Drawing.Point(76, 565);
             this.btnTendeciaCentral.Name = "btnTendeciaCentral";
             this.btnTendeciaCentral.Size = new System.Drawing.Size(150, 26);
-            this.btnTendeciaCentral.TabIndex = 22;
+            this.btnTendeciaCentral.TabIndex = 12;
             this.btnTendeciaCentral.Text = "Tendencia Central";
             this.btnTendeciaCentral.UseVisualStyleBackColor = true;
             this.btnTendeciaCentral.Click += new System.EventHandler(this.btnTendeciaCentral_Click);
