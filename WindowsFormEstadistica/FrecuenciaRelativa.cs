@@ -190,7 +190,7 @@ namespace WindowsFormEstadistica
 
                 if (rbnNumerico.Checked)
                 {
-                    objtd.datadecimal.Add(decimal.Parse(item.Replace(',', '.')));
+                    objtd.datadecimal.Add(decimal.Parse(item.Replace('.', ',')));
                 }
             }
 
@@ -218,9 +218,9 @@ namespace WindowsFormEstadistica
             {
                 Intervalo_E objint = new Intervalo_E();
                 objint.numintervalo = Convert.ToInt32(txtInvertavalos.Text);
-                objint.intervalo = Convert.ToDecimal(txtIntervaloSuperior.Text.Replace(',', '.')) - Convert.ToDecimal(txtIntervaloInferior.Text.Replace(',', '.'));
-                objint.intinf = Convert.ToDecimal(txtIntervaloInferior.Text.Replace(',', '.'));
-                objint.intsup = Convert.ToDecimal(txtIntervaloSuperior.Text.Replace(',', '.'));
+                objint.intervalo = Convert.ToDecimal(txtIntervaloSuperior.Text.Replace('.', ',')) - Convert.ToDecimal(txtIntervaloInferior.Text.Replace('.', ','));
+                objint.intinf = Convert.ToDecimal(txtIntervaloInferior.Text.Replace('.', ','));
+                objint.intsup = Convert.ToDecimal(txtIntervaloSuperior.Text.Replace('.', ','));
                 objint.fi = 0;
                 for (int i = 0; i < objint.numintervalo; i++)
                 {
