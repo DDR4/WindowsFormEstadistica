@@ -488,7 +488,15 @@ namespace WindowsFormEstadistica
                 objcd.ruta = openFileDialog.FileName;
                 objcd.data = File.ReadAllLines(objcd.ruta);
 
-                Form frombarra = new TendenciaCentral(DataFinal, objcd.data);
+                List<decimal> lststring = new List<decimal>();
+                foreach (var item in objcd.data)
+                {
+                    lststring.Add(Decimal.Parse(item));
+                }
+
+               decimal[] array = lststring.ToArray();
+
+                Form frombarra = new TendenciaCentral(DataFinal, array);
                 frombarra.Show();
             }
         }

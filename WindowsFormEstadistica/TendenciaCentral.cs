@@ -16,8 +16,8 @@ namespace WindowsFormsGraficos
     public partial class TendenciaCentral : Form
     {
         private readonly List<TablaFrecuencia_E> DataFinal;
-        private readonly string[] arraydata;
-        public TendenciaCentral(List<TablaFrecuencia_E> Data, string[] data)
+        private readonly decimal[] arraydata;
+        public TendenciaCentral(List<TablaFrecuencia_E> Data, decimal[] data)
         {
             DataFinal = Data;
             arraydata = data;
